@@ -38,12 +38,12 @@ namespace DAL
             }
         }
 
-        public async void TambahKategori(Kategori kategori)
+        public async Task TambahKategori(Kategori kategori)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
-                string strSql = @"insert into Kategori(KategoriID,KategoriNama) values(@KategoriID,@KategoriNama)";
-                var param = new { KategoriID = kategori.KategoriID, KategoriNama = kategori.KategoriNama };
+                string strSql = @"insert into Kategori(KategoriNama) values(@KategoriNama)";
+                var param = new { KategoriNama = kategori.KategoriNama };
                 try
                 {
                     await conn.ExecuteAsync(strSql, param);
@@ -55,7 +55,7 @@ namespace DAL
             }
         }
 
-        public async void UpdateKategori(Kategori kategori)
+        public async Task UpdateKategori(Kategori kategori)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
@@ -72,7 +72,7 @@ namespace DAL
             }
         }
 
-        public async void DeleteKategori(int kategoriID)
+        public async Task DeleteKategori(int kategoriID)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
